@@ -31,7 +31,7 @@ public class CashbackHackServiceTest {
     }
 
     @Test
-    public void shouldReturn0IfAmountIs1000() {
+    public void shouldReturnZeroIfAmountIs1000() {
         // подготовка
         CashbackHackService service = new CashbackHackService();
         int amount = 1000;
@@ -43,7 +43,7 @@ public class CashbackHackServiceTest {
     }
 
     @Test
-    public void shouldReturn0IfAmountIs2000() {
+    public void shouldReturnZeroIfAmountIs2000() {
         // подготовка
         CashbackHackService service = new CashbackHackService();
         int amount = 2000;
@@ -55,14 +55,23 @@ public class CashbackHackServiceTest {
     }
 
     @Test
-    public void shouldReturn0IfAmountIsNegative() {
+    public void shouldReturn1000IfAmountIsZero() {
+        // подготовка
+        CashbackHackService service = new CashbackHackService();
+        int amount = 0;
+        // выполнение целевого действия
+        int actual = service.remain(amount);
+        int expected = 1000;
+        // сравнение ожидаемого и фактического
+        assertEquals(actual, expected);
+    }
+
+    @Test(expectedExceptions = { Exception.class })
+    public void shouldThrowExceptionIfAmountIsNegative() {
         // подготовка
         CashbackHackService service = new CashbackHackService();
         int amount = -1500;
         // выполнение целевого действия
         int actual = service.remain(amount);
-        int expected = 0;
-        // сравнение ожидаемого и фактического
-        assertEquals(actual, expected);
     }
 }
